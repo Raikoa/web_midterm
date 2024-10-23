@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <script src= "ss.js"></script>
+    </head>
+    <body>
+        <div class="gradient"></div>
+        <button onclick="changeText();">click</button>
+        <p id="e"></p>
+        
+        <script>
+            if ('paintWorklet' in CSS) {
+            CSS.paintWorklet.addModule('data:text/javascript;charset=utf-8,' + encodeURIComponent(`
+                class GradientPainter {
+                    static get inputProperties() {
+                        return ['--gradient-start', '--gradient-end'];
+                    }
+
+                    paint(ctx, geom, properties) {
+                        const gradient = ctx.createLinearGradient(0, 0, geom.width, geom.height);
+                        gradient.addColorStop(0, properties.get('--gradient-start').toString());
+                        gradient.addColorStop(1, properties.get('--gradient-end').toString());
+                        ctx.fillStyle = gradient;
+                        ctx.fillRect(0, 0, geom.width, geom.height);
+                    }
+                }
+                registerPaint('grad', GradientPainter);
+            `)).catch(error => {
+                console.error('Error loading the worklet:', error);
+            });
+        } else {
+            console.warn('Paint Worklet not supported in this browser.');
+        }
+        </script>
+    </body>
+    </html>

@@ -1,0 +1,8 @@
+.gradient {
+    --gradient: paint(grad);
+    --gradient-start: red;
+    --gradient-end: blue;
+    width: 100px;
+    height: 100px;
+    background: var(--gradient);
+  }
