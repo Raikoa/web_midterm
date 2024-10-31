@@ -2,13 +2,83 @@
 html {
     box-sizing: border-box;
     background-color: #E2DED5;
-    
+   
   }
   
   *, *:before, *:after {
     box-sizing: inherit;
   }
   /* custom styles*/
+  .navi{
+    display: flex;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  .pText{
+    margin-left: auto;
+    display: flex;
+    gap: 15px;
+  }
+
+  .home{
+    z-index: 3;
+    font-size: 16px;
+    text-decoration: none;
+  }
+  .home:hover{
+    background-color: #ccc;
+
+  }
+  
+  .home:hover ~ .head_style{
+    animation: animateHeader 7s 1s infinite ease-in-out;
+  }
+
+  .head_style{
+    position: absolute;
+    font-size: 16px;
+    --number-of-circles: 2;
+    background-image: paint(Line_header);
+  }
+
+  @keyframes animateHeader{
+        0%{
+            --number-of-circles: 2;
+
+        }
+        50%{
+            --number-of-circles: 13;
+        }
+        79%{
+            --number-of-circles: 2;
+        }
+       
+        100%{
+            --number-of-circles: 2;
+        }
+  }
+
+
+  .test {
+    --boxColor: hsl(155 90% 60% / 100%);
+    --widthSubtractor: 40;
+    background-image: paint(square_header);
+  }
+  li {
+    --boxColor: hsl(155 90% 60% / 50%);
+    background-image: paint(hollowHighlights, stroke, 5px);
+  }
+  
+  li:nth-of-type(3n) {
+    --boxColor: hsl(255 90% 60% / 50%);
+    background-image: paint(hollowHighlights, filled, 3px);
+  }
+  
+  li:nth-of-type(3n + 1) {
+    --boxColor: hsl(355 90% 60% / 50%);
+    background-image: paint(hollowHighlights, stroke, 1px);
+  }
+
   .menu{
     border: inset 5px #87CEEB;
     height: 500px;
@@ -42,7 +112,7 @@ html {
   .modal-img{
     margin: auto;
     display: block;
-    max-width: 90%;
+    max-width: 75%;
   }
 
   .close{
